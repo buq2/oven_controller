@@ -209,7 +209,7 @@ Text Label 3650 4200 2    60   ~ 0
 D-
 Text Label 3650 4300 2    60   ~ 0
 D+
-Text Label 3650 3150 2    60   ~ 0
+Text Label 6350 3900 0    60   ~ 0
 CSn_FLASH
 Text Label 6350 4100 0    60   ~ 0
 MOSI
@@ -250,7 +250,7 @@ Wire Wire Line
 	1100 6650 1250 6650
 Text Label 2100 6950 0    60   ~ 0
 nCS_THERMO
-Text Label 3650 3250 2    60   ~ 0
+Text Label 6350 4000 0    60   ~ 0
 nCS_THERMO
 Text Label 2100 6800 0    60   ~ 0
 MISO
@@ -456,17 +456,17 @@ Wire Wire Line
 $Comp
 L CONN_2 P1
 U 1 1 54BEA1D6
-P 700 7600
-F 0 "P1" V 650 7600 40  0000 C CNN
-F 1 "CONN_THERMO" V 750 7600 40  0000 C CNN
-F 2 "buq2:PIN_HEADER_2" H 700 7600 60  0001 C CNN
-F 3 "" H 700 7600 60  0000 C CNN
-	1    700  7600
+P 4100 7550
+F 0 "P1" V 4050 7550 40  0000 C CNN
+F 1 "CONN_THERMO" V 4150 7550 40  0000 C CNN
+F 2 "buq2:PIN_HEADER_2" H 4100 7550 60  0001 C CNN
+F 3 "" H 4100 7550 60  0000 C CNN
+	1    4100 7550
 	0    1    1    0   
 $EndComp
-Text Label 600  7250 2    60   ~ 0
+Text Label 4000 7200 2    60   ~ 0
 T-
-Text Label 800  7250 0    60   ~ 0
+Text Label 4200 7200 0    60   ~ 0
 T+
 $Comp
 L LS013B4DN04 U5
@@ -483,7 +483,7 @@ Text Label 10000 1000 2    60   ~ 0
 SCK
 Text Label 10000 1150 2    60   ~ 0
 MOSI
-Text Label 3650 3350 2    60   ~ 0
+Text Label 6350 3800 0    60   ~ 0
 CS_DISPLAY
 Text Label 10000 1300 2    60   ~ 0
 CS_DISPLAY
@@ -581,18 +581,16 @@ $EndComp
 $Comp
 L CONN_2 P2
 U 1 1 54BEB6B2
-P 3700 7550
-F 0 "P2" V 3650 7550 40  0000 C CNN
-F 1 "CONN_POWER" V 3750 7550 40  0000 C CNN
-F 2 "buq2:PIN_HEADER_2" H 3700 7550 60  0001 C CNN
-F 3 "" H 3700 7550 60  0000 C CNN
-	1    3700 7550
+P 3200 7550
+F 0 "P2" V 3150 7550 40  0000 C CNN
+F 1 "CONN_POWER" V 3250 7550 40  0000 C CNN
+F 2 "buq2:PIN_HEADER_2" H 3200 7550 60  0001 C CNN
+F 3 "" H 3200 7550 60  0000 C CNN
+	1    3200 7550
 	0    1    1    0   
 $EndComp
-Text Label 3600 7200 2    60   ~ 0
+Text Label 3100 7200 2    60   ~ 0
 VBUS
-Text Label 3800 7200 0    60   ~ 0
-GND
 $Comp
 L LD1117-SOT-223 U4
 U 1 1 54BEB9AE
@@ -652,11 +650,11 @@ Text Label 8800 4150 2    60   ~ 0
 BTN0
 Text Label 8800 4800 2    60   ~ 0
 BTN1
-Text Label 6350 3250 0    60   ~ 0
+Text Label 6350 2500 0    60   ~ 0
 BTN1
-Text Label 6350 3350 0    60   ~ 0
+Text Label 6350 2700 0    60   ~ 0
 BTN2
-Text Label 6350 3150 0    60   ~ 0
+Text Label 6350 2300 0    60   ~ 0
 BTN0
 $Comp
 L LED D1
@@ -769,11 +767,11 @@ Text Label 8500 3300 2    60   ~ 0
 LD1
 Text Label 8500 3550 2    60   ~ 0
 LD2
-Text Label 6350 2300 0    60   ~ 0
-LD0
 Text Label 6350 2400 0    60   ~ 0
+LD0
+Text Label 6350 2600 0    60   ~ 0
 LD1
-Text Label 6350 2500 0    60   ~ 0
+Text Label 6350 2800 0    60   ~ 0
 LD2
 $Comp
 L PWR_FLAG #FLG019
@@ -804,23 +802,20 @@ $EndComp
 Wire Wire Line
 	6300 7400 6300 7350
 Connection ~ 6300 7350
-NoConn ~ 6350 4000
-NoConn ~ 6350 3900
-NoConn ~ 6350 3800
+NoConn ~ 6350 3250
+NoConn ~ 6350 3350
+NoConn ~ 6350 3150
 NoConn ~ 6350 3700
 NoConn ~ 6350 3600
 NoConn ~ 6350 3450
 NoConn ~ 6350 3000
 NoConn ~ 6350 2900
-NoConn ~ 6350 2800
-NoConn ~ 6350 2700
-NoConn ~ 6350 2600
+NoConn ~ 3650 3150
+NoConn ~ 3650 3250
+NoConn ~ 3650 3350
 NoConn ~ 3650 2900
 NoConn ~ 3650 3000
 NoConn ~ 3650 3450
-NoConn ~ 3650 3600
-NoConn ~ 3650 3700
-NoConn ~ 3650 3800
 NoConn ~ 3650 3900
 NoConn ~ 3650 4000
 NoConn ~ 3650 4100
@@ -922,4 +917,53 @@ Wire Wire Line
 Wire Wire Line
 	8850 4800 8800 4800
 Connection ~ 8850 4800
+$Comp
+L GND #PWR024
+U 1 1 54BF66A7
+P 3300 7150
+F 0 "#PWR024" H 3300 7150 30  0001 C CNN
+F 1 "GND" H 3300 7080 30  0001 C CNN
+F 2 "" H 3300 7150 60  0000 C CNN
+F 3 "" H 3300 7150 60  0000 C CNN
+	1    3300 7150
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	3300 7150 3300 7200
+$Comp
+L GND #PWR025
+U 1 1 54BF685A
+P 3750 6000
+F 0 "#PWR025" H 3750 6000 30  0001 C CNN
+F 1 "GND" H 3750 5930 30  0001 C CNN
+F 2 "" H 3750 6000 60  0000 C CNN
+F 3 "" H 3750 6000 60  0000 C CNN
+	1    3750 6000
+	-1   0    0    1   
+$EndComp
+Text Label 3650 6100 1    60   ~ 0
+RELAY0
+Text Label 3650 3600 2    60   ~ 0
+RELAY0
+$Comp
+L CONN_4 P3
+U 1 1 54BFB3CC
+P 3600 6450
+F 0 "P3" V 3550 6450 50  0000 C CNN
+F 1 "CONN_4" V 3650 6450 50  0000 C CNN
+F 2 "buq2:PIN_HEADER_4" H 3600 6450 60  0001 C CNN
+F 3 "" H 3600 6450 60  0000 C CNN
+	1    3600 6450
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	3750 6000 3750 6100
+Text Label 3550 6100 1    60   ~ 0
+RELAY1
+Text Label 3450 6100 1    60   ~ 0
+RELAY2
+Text Label 3650 3700 2    60   ~ 0
+RELAY1
+Text Label 3650 3800 2    60   ~ 0
+RELAY2
 $EndSCHEMATC
