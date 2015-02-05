@@ -1,4 +1,4 @@
-Cmp-Mod V01 Created by Cvpcb (2015-01-20 BZR 5383)-product   date = Tue Jan 20 21:24:47 2015
+Cmp-Mod V01 Created by Cvpcb (2015-01-20 BZR 5383)-product   date = Wed Jan 21 07:21:59 2015
 
 BeginCmp
 TimeStamp = /54BE9E8A;
@@ -71,6 +71,13 @@ IdModule  = buq2:SM0603;
 EndCmp
 
 BeginCmp
+TimeStamp = /54BF384C;
+Reference = C11;
+ValeurCmp = 100n;
+IdModule  = buq2:SM0603;
+EndCmp
+
+BeginCmp
 TimeStamp = /54BE94B8;
 Reference = CON1;
 ValeurCmp = BUQ2-USB-MICRO-B;
@@ -115,7 +122,7 @@ EndCmp
 BeginCmp
 TimeStamp = /54BEA1D6;
 Reference = P1;
-ValeurCmp = CONN_THERMO;
+ValeurCmp = CONN_THERMO0;
 IdModule  = buq2:PIN_HEADER_2;
 EndCmp
 
@@ -131,6 +138,13 @@ TimeStamp = /54BFB3CC;
 Reference = P3;
 ValeurCmp = CONN_4;
 IdModule  = buq2:PIN_HEADER_4;
+EndCmp
+
+BeginCmp
+TimeStamp = /54BF48F3;
+Reference = P4;
+ValeurCmp = CONN_THERMO1;
+IdModule  = buq2:PIN_HEADER_2;
 EndCmp
 
 BeginCmp
@@ -208,6 +222,13 @@ TimeStamp = /54BF243E;
 Reference = U8;
 ValeurCmp = SW_PUSH_4_PIN;
 IdModule  = buq2:PUSHBUTTON_4x4_5x5_ROTATED_4_PIN;
+EndCmp
+
+BeginCmp
+TimeStamp = /54BF378E;
+Reference = U9;
+ValeurCmp = MAX6675ISA+;
+IdModule  = buq2:8-SOIC;
 EndCmp
 
 BeginCmp

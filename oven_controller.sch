@@ -30,6 +30,7 @@ LIBS:atmel
 LIBS:contrib
 LIBS:valves
 LIBS:buq2-kicad-components
+LIBS:oven_controller-cache
 EELAYER 25 0
 EELAYER END
 $Descr A4 11693 8268
@@ -209,7 +210,7 @@ Text Label 3650 4200 2    60   ~ 0
 D-
 Text Label 3650 4300 2    60   ~ 0
 D+
-Text Label 6350 3900 0    60   ~ 0
+Text Label 6350 3700 0    60   ~ 0
 CSn_FLASH
 Text Label 6350 4100 0    60   ~ 0
 MOSI
@@ -232,9 +233,9 @@ NoConn ~ 2100 6650
 Text Label 1150 7100 2    60   ~ 0
 VDD
 Text Label 1250 6950 2    60   ~ 0
-T+
+T+0
 Text Label 1250 6800 2    60   ~ 0
-T-
+T-0
 $Comp
 L GND #PWR04
 U 1 1 54BE9181
@@ -249,9 +250,9 @@ $EndComp
 Wire Wire Line
 	1100 6650 1250 6650
 Text Label 2100 6950 0    60   ~ 0
-nCS_THERMO
-Text Label 6350 4000 0    60   ~ 0
-nCS_THERMO
+nCS_THERMO0
+Text Label 6350 3900 0    60   ~ 0
+nCS_THERMO0
 Text Label 2100 6800 0    60   ~ 0
 MISO
 Text Label 2100 7100 0    60   ~ 0
@@ -458,16 +459,16 @@ L CONN_2 P1
 U 1 1 54BEA1D6
 P 4100 7550
 F 0 "P1" V 4050 7550 40  0000 C CNN
-F 1 "CONN_THERMO" V 4150 7550 40  0000 C CNN
+F 1 "CONN_THERMO0" V 4150 7550 40  0000 C CNN
 F 2 "buq2:PIN_HEADER_2" H 4100 7550 60  0001 C CNN
 F 3 "" H 4100 7550 60  0000 C CNN
 	1    4100 7550
 	0    1    1    0   
 $EndComp
 Text Label 4000 7200 2    60   ~ 0
-T-
+T-0
 Text Label 4200 7200 0    60   ~ 0
-T+
+T+0
 $Comp
 L LS013B4DN04 U5
 U 1 1 54BEA902
@@ -483,7 +484,7 @@ Text Label 10000 1000 2    60   ~ 0
 SCK
 Text Label 10000 1150 2    60   ~ 0
 MOSI
-Text Label 6350 3800 0    60   ~ 0
+Text Label 6350 3600 0    60   ~ 0
 CS_DISPLAY
 Text Label 10000 1300 2    60   ~ 0
 CS_DISPLAY
@@ -805,8 +806,6 @@ Connection ~ 6300 7350
 NoConn ~ 6350 3250
 NoConn ~ 6350 3350
 NoConn ~ 6350 3150
-NoConn ~ 6350 3700
-NoConn ~ 6350 3600
 NoConn ~ 6350 3450
 NoConn ~ 6350 3000
 NoConn ~ 6350 2900
@@ -966,4 +965,85 @@ Text Label 3650 3700 2    60   ~ 0
 RELAY1
 Text Label 3650 3800 2    60   ~ 0
 RELAY2
+$Comp
+L MAX6675ISA+ U9
+U 1 1 54BF378E
+P 5250 5600
+F 0 "U9" H 5250 5100 60  0000 C CNN
+F 1 "MAX6675ISA+" H 5250 6000 60  0000 C CNN
+F 2 "buq2:8-SOIC" H 5300 5350 60  0001 C CNN
+F 3 "" H 5300 5350 60  0000 C CNN
+	1    5250 5600
+	1    0    0    -1  
+$EndComp
+$Comp
+L C C11
+U 1 1 54BF384C
+P 4600 6050
+F 0 "C11" H 4600 6150 40  0000 L CNN
+F 1 "100n" H 4606 5965 40  0000 L CNN
+F 2 "buq2:SM0603" H 4638 5900 30  0001 C CNN
+F 3 "" H 4600 6050 60  0000 C CNN
+	1    4600 6050
+	1    0    0    -1  
+$EndComp
+$Comp
+L GND #PWR026
+U 1 1 54BF38B3
+P 4600 6350
+F 0 "#PWR026" H 4600 6350 30  0001 C CNN
+F 1 "GND" H 4600 6280 30  0001 C CNN
+F 2 "" H 4600 6350 60  0000 C CNN
+F 3 "" H 4600 6350 60  0000 C CNN
+	1    4600 6350
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4600 6350 4600 6250
+Wire Wire Line
+	4600 5850 4850 5850
+Text Label 4850 5550 2    60   ~ 0
+T-1
+Text Label 4850 5700 2    60   ~ 0
+T+1
+Text Label 5700 5550 0    60   ~ 0
+MISO
+Text Label 5700 5700 0    60   ~ 0
+nCS_THERMO1
+Text Label 5700 5850 0    60   ~ 0
+SCK
+NoConn ~ 5700 5400
+$Comp
+L GND #PWR027
+U 1 1 54BF3CB5
+P 4700 5400
+F 0 "#PWR027" H 4700 5400 30  0001 C CNN
+F 1 "GND" H 4700 5330 30  0001 C CNN
+F 2 "" H 4700 5400 60  0000 C CNN
+F 3 "" H 4700 5400 60  0000 C CNN
+	1    4700 5400
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	4700 5400 4850 5400
+Text Label 6350 3800 0    60   ~ 0
+nCS_THERMO1
+NoConn ~ 6350 4000
+$Comp
+L CONN_2 P4
+U 1 1 54BF48F3
+P 4800 7650
+F 0 "P4" V 4750 7650 40  0000 C CNN
+F 1 "CONN_THERMO1" V 4850 7650 40  0000 C CNN
+F 2 "buq2:PIN_HEADER_2" H 4800 7650 60  0001 C CNN
+F 3 "" H 4800 7650 60  0000 C CNN
+	1    4800 7650
+	0    1    1    0   
+$EndComp
+Text Label 4700 7300 2    60   ~ 0
+T-1
+Text Label 4900 7300 0    60   ~ 0
+T+1
+Text Label 4600 5850 2    60   ~ 0
+VDD
 $EndSCHEMATC
