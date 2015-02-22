@@ -1,17 +1,20 @@
 #include "thermo_max6675.hh"
 #include <LUFA/Drivers/Peripheral/SPI.h>
 
-#define SPI_PORT PORTC
-#define SPI_VAR SPIC
-#define CS_PORT PORTC
-#define CS_PIN 0b00001000;
 #define SPI_SS_PIN 0b00010000
 #define SPI_MOSI_PIN 0b00100000
 #define SPI_SCK_PIN 0b10000000
 
 // http://datasheets.maximintegrated.com/en/ds/MAX6675.pdf
 
-ThermoMax6675::ThermoMax6675()
+ThermoMax6675::ThermoMax6675(const axlib::Port spi_port, const axlib::Port cs_port,
+                             const uint8_t cs_pin)
+    :
+      spi_port_(axlib::GetPort(spi_port)),
+      spi_(axlib::GetSpiPort(spi_port)),
+      cs_port_(axlib::GetPort(cs_port)),
+      cs_pin_(cs_pin),
+      temperature_bias_(0)
 {
     Setup();
 }
@@ -19,18 +22,18 @@ ThermoMax6675::ThermoMax6675()
 bool ThermoMax6675::Setup()
 {
     // Setup SPI pins
-    SPI_PORT.DIRSET  = SPI_MOSI_PIN | SPI_SCK_PIN | SPI_SS_PIN;
-    SPI_PORT.PIN4CTRL = PORT_OPC_WIREDANDPULL_gc;
+    spi_port_->DIRSET  = SPI_MOSI_PIN | SPI_SCK_PIN | SPI_SS_PIN;
+    spi_port_->PIN4CTRL = PORT_OPC_WIREDANDPULL_gc;
 
     SetChipSelected(false);
 
     // Set the actual CS pin (which is not in the SPI port)
-    CS_PORT.DIRSET = CS_PIN;
-    CS_PORT.OUTCLR = CS_PIN;
+    cs_port_->DIRSET = cs_pin_;
+    cs_port_->OUTCLR = cs_pin_;
 
     // Setup SPI
     // It seems that even SPI_SPEED_FCPU_DIV_4  could be usable
-    SPI_Init(&SPI_VAR,
+    SPI_Init(spi_,
              SPI_SPEED_FCPU_DIV_128  | SPI_ORDER_MSB_FIRST | SPI_SCK_LEAD_RISING |
              SPI_SAMPLE_LEADING | SPI_MODE_MASTER);
 
@@ -40,23 +43,27 @@ bool ThermoMax6675::Setup()
 void ThermoMax6675::SetChipSelected(const bool selected)
 {
     if (selected) {
-        CS_PORT.OUTCLR = CS_PIN;
+        cs_port_->OUTCLR = cs_pin_;
     } else {
-        CS_PORT.OUTSET = CS_PIN;
+        cs_port_->OUTSET = cs_pin_;
     }
 }
 
-uint16_t ThermoMax6675::GetValue()
+bool ThermoMax6675::GetTemperatureCelcius(uint16_t *temperature)
 {
     SetChipSelected(true);
-    uint16_t b1 = SPI_ReceiveByte(&SPI_VAR)*255;
-    b1 += ((uint16_t)SPI_ReceiveByte(&SPI_VAR));
+    uint16_t b1 = SPI_ReceiveByte(spi_)*255;
+    b1 += ((uint16_t)SPI_ReceiveByte(spi_));
     b1 = b1>>3;
     b1 /= 4;
     SetChipSelected(false);
 
-    // Must have at least 220ms time before next conversion
-    // otherwise nothing will be converted
-    _delay_ms(500);
-    return b1;
+    *temperature = b1 - temperature_bias_;
+
+    return true;
+}
+
+void ThermoMax6675::SetTemperatureBiasCelcius(const uint16_t bias)
+{
+    temperature_bias_ = bias;
 }

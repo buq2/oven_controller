@@ -1,0 +1,3 @@
+[submodule "mcu/xmega-libraries"]
+	path = mcu/xmega-libraries
+	url = git@bitbucket-buq2:buq2/xmega-libraries.git

@@ -10,7 +10,9 @@ INCLUDE_DIRECTORIES(.)
 
 INCLUDE_DIRECTORIES("lufa_config/")
 INCLUDE_DIRECTORIES(${LUFA_INCLUDE_DIRECTORIES})
-ADD_SUBDIRECTORY("lufa_config")
+ADD_SUBDIRECTORY(lufa_config)
+ADD_SUBDIRECTORY(xmega-libraries)
+INCLUDE_DIRECTORIES("xmega-libraries/")
 
 FILE(GLOB LUFA_USB_C
     ${LUFA_LOCATION}/LUFA/Drivers/USB/Class/Device/
@@ -37,4 +39,6 @@ ADD_EXECUTABLE(ovenc
 
 TARGET_LINK_LIBRARIES(ovenc
     LufaConfig
+    axCore
+    axControl
     )
